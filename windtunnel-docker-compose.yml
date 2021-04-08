@@ -1,0 +1,9 @@
+version: "3.7"
+
+services:
+  windtunnel:
+    container_name: windtunnel
+    build: .
+    ports:
+      - "4080:4080"
+    command: ./start_performance_test.sh --backend postgres --host https://sandbox-api.fhirsandbox.aws.greenwayhealth.com --influxdb http://host.docker.internal:8086

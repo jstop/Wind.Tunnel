@@ -35,7 +35,7 @@ class Reporter(object):
         influxhost.pop()
         influxhost = influxhost.pop().replace("//", "")
 
-        self._client = InfluxDBClient(host=influxhost, port=influxport, database='data')
+        self._client = InfluxDBClient(host=influxhost, port=influxport, database='data', username='admin', password='admin')
         self._user_count = locust.runners.locust_runner.num_clients
         # self._run_id = env["RUN_ID"]
         # self._team = env["TEAM"]
@@ -238,14 +238,14 @@ class Reporter(object):
     def endpoint_sanity_test(self):
         session = HttpSession(base_url="")
 
-        with session.get(self.host + "/Patient?given=Mariano451&family=Bashirian129",
+        with session.get(self.host + "/Patient?given=Alberto639&family=Delatorre612",
                          catch_response=True, name="Sanity test") as response:
             try:
                 test.checkResponse(response.status_code, 200)
                 bundle = response.json()
                 test.checkTotalAboveZero(self, bundle, True)
             except ResponseError:
-                sys.exit('Sanity test failed, /Patient?given=Mariano451&family=Bashirian129 returned nothing. Have you uploaded the test dataset?')
+                sys.exit('Sanity test failed, /Patient?given=Alberto639&family=Delatorre612 returned nothing. Have you uploaded the test dataset?')
 
     def influx_sanity_test(self):
         try:

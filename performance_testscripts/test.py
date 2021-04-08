@@ -25,7 +25,7 @@ def ETagHeaderPresent(headers):
 
 
 def checkFormat(response, expectedFormat):
-	print "expected format: " + expectedFormat
+	print("expected format: " + expectedFormat)
 	actualFormat = format(response)
 	if actualFormat != expectedFormat:
 		raise ResponseError("Expected format of response body is " + str(expectedFormat) + ", but the following format was found: " + str(actualFormat))
@@ -81,7 +81,7 @@ def checkTotalEquals(self, bundle, number, expectedValue):
 def totalEquals(self, bundle, number):
 	# print bundle.json()
 	total = [match.value for match in parse('$.total').find(bundle)]
-	print "total: " + str(total)[1:-1] + " expected: " + str(number)
+	print("total: " + str(total)[1:-1] + " expected: " + str(number))
 	return (len(total) > 0 and total[0] == number)
 
 
